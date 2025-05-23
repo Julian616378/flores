@@ -21,7 +21,9 @@
             font-family: 'Arial', sans-serif;
             cursor: pointer;
         }
-
+        *:focus{
+            outline: none;
+        }
         .container {
             position: relative;
             width: 100%;
@@ -229,6 +231,9 @@
             z-index: 20;
             filter: drop-shadow(0 2px 4px rgba(0,0,0,0.3));
         }
+        .click-flower:focus {
+           outline: none;
+        }
 
         @keyframes float-up {
             0% {
@@ -282,7 +287,7 @@
 </head>
 <body>
   <audio autoplay loop style="display: none">
-    <source src="flor.mpeg" type="audio/mpeg">
+    <source src="flor.mp4" type="audio/mpeg">
     Tu navegador no soporta el elemento de audio.
   </audio>
     <div class="hearts" id="hearts"></div>
