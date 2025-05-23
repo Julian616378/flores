@@ -6,10 +6,6 @@
     <title>Ramo de Flores Especial</title>
     <style>
         body {
-
-
-
-
             margin: 0;
             padding: 0;
             height: 100vh;
@@ -289,15 +285,11 @@
     </style>
 </head>
 <body>
-  <audio autoplay loop style="display: none">
+  <audio loop style="display: none" id="backgroundAudio">
     <source src="flor.mp4" type="audio/mpeg">
     Tu navegador no soporta el elemento de audio.
   </audio>
     <div class="hearts" id="hearts"></div>
-
-
-    
-
 
     <div class="container">
         <div class="bouquet">
@@ -370,6 +362,12 @@
 
     <script>
         document.addEventListener('DOMContentLoaded', function() {
+            // Reproducir audio después de 2 segundos
+            setTimeout(function() {
+                const audio = document.getElementById('backgroundAudio');
+                audio.play().catch(e => console.log("No se pudo reproducir el audio automáticamente:", e));
+            }, 1000);
+
             // Crear pétalos para cada flor con centros perfectamente centrados
             const flowers = document.querySelectorAll('.flower');
             flowers.forEach(flower => {
