@@ -6,6 +6,10 @@
     <title>Ramo de Flores Especial</title>
     <style>
         body {
+
+
+
+
             margin: 0;
             padding: 0;
             height: 100vh;
@@ -285,11 +289,15 @@
     </style>
 </head>
 <body>
-  <audio loop style="display: none" id="backgroundAudio">
+  <audio loop style="display: none" id="background-music">
     <source src="flor.mp4" type="audio/mpeg">
     Tu navegador no soporta el elemento de audio.
   </audio>
     <div class="hearts" id="hearts"></div>
+
+
+    
+
 
     <div class="container">
         <div class="bouquet">
@@ -362,12 +370,6 @@
 
     <script>
         document.addEventListener('DOMContentLoaded', function() {
-            // Reproducir audio después de 2 segundos
-            setTimeout(function() {
-                const audio = document.getElementById('backgroundAudio');
-                audio.play().catch(e => console.log("No se pudo reproducir el audio automáticamente:", e));
-            }, 1000);
-
             // Crear pétalos para cada flor con centros perfectamente centrados
             const flowers = document.querySelectorAll('.flower');
             flowers.forEach(flower => {
@@ -519,6 +521,43 @@
                 }, 3000);
             }
         });
+
+          document.addEventListener('DOMContentLoaded', function() {
+        // Obtén el elemento de audio
+        const backgroundMusic = document.getElementById('background-music');
+        
+        // Variable para controlar si ya se ha reproducido una vez
+        let hasPlayed = false;
+
+        // El resto de tu código JavaScript actual permanece igual...
+
+        // Efecto de flores al hacer clic y reproducir música
+        document.addEventListener('click', function(e) {
+            // Reproducir música solo si no se ha reproducido antes
+            if (!hasPlayed) {
+                backgroundMusic.play()
+                    .then(() => {
+                        hasPlayed = true;
+                    })
+                    .catch(error => {
+                        console.log("La reproducción automática fue prevenida:", error);
+                    });
+            }
+            
+            createClickFlower(e.clientX, e.clientY);
+            
+            // Crear varias flores en posición aleatoria alrededor del clic
+            for (let i = 0; i < 3; i++) {
+                setTimeout(() => {
+                    const x = e.clientX + (Math.random() * 60 - 30);
+                    const y = e.clientY + (Math.random() * 60 - 30);
+                    createClickFlower(x, y);
+                }, i * 100);
+            }
+        });
+
+        // El resto de tus funciones permanece igual...
+    });
     </script>
 </body>
 </html>
